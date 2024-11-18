@@ -65,10 +65,10 @@ Parameters:
   HostedZoneName:
     Description: Hosted zone for the domain
     Type: String
-    AllowedPattern: '[A-Za-z\.]*\.$'
   HostedZoneId:
     Description: Hosted Zone Id for Route53 Domain
     Type: String
+    AllowedPattern: '[A-Za-z\.]*$'
   PortalAllowedIPCIDR:
     Description: IP CIDR for access to the Portal
     Default: 0.0.0.0/0
@@ -912,7 +912,7 @@ Resources:
   DNSRecord:
     Type: AWS::Route53::RecordSet
     Properties:
-      HostedZoneName: !Ref HostedZoneName
+      HostedZoneId: !Ref HostedZoneId
       Name: !Ref WebsiteDomainName
       AliasTarget:
         DNSName: !GetAtt ALB.DNSName
